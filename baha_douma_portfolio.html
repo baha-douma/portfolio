@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baha Douma | Telecommunications & Software Engineer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        darkBg: '#09090b',
+                        cardBg: '#121215',
+                        accentCyan: '#06b6d4',
+                        accentPurple: '#8b5cf6',
+                        accentAmber: '#f59e0b'
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(18, 18, 21, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Subtle grid background */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Reveal animation classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-zinc-100 font-sans antialiased selection:bg-accentCyan/30 selection:text-cyan-200 overflow-x-hidden">
+
+    <!-- Ambient Background Glows -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-screen filter blur-3xl animate-blob"></div>
+        <div class="absolute top-[20%] right-[-5%] w-96 h-96 bg-purple-600/10 rounded-full mix-blend-screen filter blur-3xl animate-blob" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-[-10%] left-[20%] w-96 h-96 bg-amber-500/5 rounded-full mix-blend-screen filter blur-3xl animate-blob" style="animation-delay: 4s;"></div>
+        <div class="absolute inset-0 bg-grid"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-4">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="glass rounded-2xl px-6 py-3 flex items-center justify-between shadow-lg shadow-black/40">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center font-mono font-bold text-white shadow-md group-hover:scale-105 transition-transform">
+                        BD
+                    </div>
+                    <span class="font-bold text-lg tracking-tight text-white">Baha<span class="text-cyan-400">.</span>Douma</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+                    <a href="#about" class="hover:text-white transition-colors">About</a>
+                    <a href="#skills" class="hover:text-white transition-colors">Tech Stack</a>
+                    <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+                    <a href="#certifications" class="hover:text-white transition-colors">Certifications</a>
+                    <a href="#venture" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                        <span>TUFTINGOO</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                    </a>
+                </div>
+
+                <!-- CTA & Mobile Toggle -->
+                <div class="flex items-center gap-3">
+                    <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-zinc-950 font-semibold text-sm hover:bg-cyan-400 hover:text-zinc-950 transition-all shadow-sm">
+                        <span>Let's Talk</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <button id="mobile-menu-btn" aria-label="Toggle Menu" class="md:hidden p-2.5 rounded-xl bg-zinc-800/80 text-zinc-200 hover:bg-zinc-700 transition-colors">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Mobile Dropdown Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-2 glass rounded-2xl p-4 flex-col gap-3 text-sm font-medium text-zinc-300 shadow-2xl">
+                <a href="#about" class="p-3 rounded-xl hover:bg-zinc-800/60 transition-colors mobile-link">About Me</a>
+                <a href="#skills" class="p-3 rounded-xl hover:bg-zinc-800/60 transition-colors mobile-link">Skills & Stack</a>
+                <a href="#projects" class="p-3 rounded-xl hover:bg-zinc-800/60 transition-colors mobile-link">Featured Projects</a>
+                <a href="#certifications" class="p-3 rounded-xl hover:bg-zinc-800/60 transition-colors mobile-link">Certifications</a>
+                <a href="#venture" class="p-3 rounded-xl hover:bg-zinc-800/60 text-amber-400 transition-colors mobile-link">TUFTINGOO Brand</a>
+                <a href="#contact" class="p-3 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-center font-semibold mobile-link">Contact Me</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Text -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border-cyan-500/30 text-xs font-mono text-cyan-400">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                        </span>
+                        <span>Telecom & Software Engineering • Tunisia</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
+                        Building intelligent <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">systems</span> & crafting bold <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-500">experiences.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed">
+                        Hi, I'm <strong class="text-white font-semibold">Baha Douma</strong>. I bridge the gap between low-level embedded networks, full-stack software architectures, AI computer vision, and bespoke textile design as the founder of <span class="text-amber-400 font-medium">TUFTINGOO</span>.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-sm hover:opacity-95 transition-all shadow-lg shadow-cyan-500/25 flex items-center gap-2">
+                            <span>Explore My Work</span>
+                            <i class="fa-solid fa-layer-group"></i>
+                        </a>
+                        <a href="#contact" class="px-6 py-3.5 rounded-xl glass hover:bg-zinc-800/80 text-zinc-200 font-semibold text-sm transition-all flex items-center gap-2">
+                            <span>Get in Touch</span>
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </a>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-5 pt-4 text-zinc-400">
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-white transition-colors text-xl"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-cyan-400 transition-colors text-xl"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-amber-400 transition-colors text-xl"><i class="fa-brands fa-instagram"></i></a>
+                        <span class="h-4 w-[1px] bg-zinc-800"></span>
+                        <span class="text-xs font-mono text-zinc-500">EN / FR / AR</span>
+                    </div>
+                </div>
+
+                <!-- Hero Visual / Interactive Terminal Card -->
+                <div class="lg:col-span-5 animate-float">
+                    <div class="glass rounded-2xl p-1 shadow-2xl shadow-cyan-950/30 border border-zinc-800/80">
+                        <div class="bg-zinc-950/90 rounded-xl p-5 font-mono text-xs sm:text-sm overflow-hidden">
+                            <!-- Window Controls -->
+                            <div class="flex items-center justify-between pb-4 mb-4 border-b border-zinc-800/80">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                                </div>
+                                <span class="text-zinc-500 text-xs">baha@engineering:~</span>
+                            </div>
+
+                            <!-- Code Content -->
+                            <div class="space-y-2.5 leading-relaxed">
+                                <p class="text-zinc-500">// Engineer & Creative Founder Profile</p>
+                                <p><span class="text-purple-400">const</span> <span class="text-cyan-300">bahaDouma</span> = {</p>
+                                <p class="pl-4">role: <span class="text-emerald-400">"Telecom & Software Engineer"</span>,</p>
+                                <p class="pl-4">focus: [</p>
+                                <p class="pl-8 text-amber-300">"Spring Boot & React Full-Stack",</p>
+                                <p class="pl-8 text-amber-300">"IoT & Embedded Systems",</p>
+                                <p class="pl-8 text-amber-300">"AI Computer Vision Analytics"</p>
+                                <p class="pl-4">],</p>
+                                <p class="pl-4">brand: {</p>
+                                <p class="pl-8">name: <span class="text-emerald-400">"TUFTINGOO"</span>,</p>
+                                <p class="pl-8">craft: <span class="text-emerald-400">"Bespoke Hand-Tufted Rugs"</span></p>
+                                <p class="pl-4">},</p>
+                                <p class="pl-4">status: <span class="text-cyan-400">"Open to Innovation & Collabs"</span></p>
+                                <p>};</p>
+                                <div class="pt-2 flex items-center gap-2 text-zinc-400">
+                                    <span class="text-cyan-400">❯</span>
+                                    <span id="typing-text" class="text-zinc-200"></span>
+                                    <span class="w-2 h-4 bg-cyan-400 animate-pulse inline-block"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-5">
+                        <div class="relative rounded-3xl overflow-hidden glass p-6 border border-zinc-800">
+                            <div class="aspect-square rounded-2xl bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-950 flex flex-col items-center justify-center p-8 text-center relative overflow-hidden">
+                                <!-- Abstract Geometric SVG Avatar/Emblem -->
+                                <svg class="w-32 h-32 mb-4 text-cyan-400" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4"/>
+                                    <circle cx="50" cy="50" r="32" stroke="#8b5cf6" stroke-width="2"/>
+                                    <path d="M35 35H52C57.5 35 61 38 61 42.5C61 46 58.5 48.5 55 49.5C59.5 50.5 62.5 53.5 62.5 58C62.5 63.5 58 67 51.5 67H35V35Z" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
+                                    <circle cx="78" cy="24" r="4" fill="#f59e0b"/>
+                                </svg>
+                                <h3 class="text-xl font-bold text-white">Baha Douma</h3>
+                                <p class="text-sm text-zinc-400 font-mono mt-1">Sousse, Tunisia</p>
+                                <div class="mt-6 grid grid-cols-2 gap-3 w-full">
+                                    <div class="bg-zinc-900/90 p-3 rounded-xl border border-zinc-800">
+                                        <span class="block text-xl font-bold text-cyan-400">360°</span>
+                                        <span class="text-xs text-zinc-400">Hardware to Cloud</span>
+                                    </div>
+                                    <div class="bg-zinc-900/90 p-3 rounded-xl border border-zinc-800">
+                                        <span class="block text-xl font-bold text-amber-400">100%</span>
+                                        <span class="text-xs text-zinc-400">Bespoke Craft</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-block px-3 py-1 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 font-mono text-xs uppercase tracking-wider">
+                            01. About Me
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                            Engineering rigor meets creative entrepreneurship.
+                        </h2>
+                        <p class="text-zinc-400 leading-relaxed">
+                            As a <strong class="text-zinc-200">Telecommunications & Software Engineering</strong> student, I thrive at the intersection of connectivity, intelligent algorithms, and scalable web architectures. Whether I am designing RESTful microservices with Spring Boot and React, deploying edge telemetry on microcontrollers, or training computer vision models to track tactical football metrics, I focus on resilient, real-world impact.
+                        </p>
+                        <p class="text-zinc-400 leading-relaxed">
+                            Beyond code and circuits, I am the founder of <strong class="text-amber-400">TUFTINGOO</strong>, a creative studio specializing in custom handmade tufted rugs. Running a brand from concept and digital vectorization to physical production has sharpened my eye for aesthetics, brand identity, and customer-centric execution.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="glass p-4 rounded-2xl flex items-start gap-3.5">
+                                <div class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400">
+                                    <i class="fa-solid fa-satellite-dish"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white text-sm">Telecom & IoT Systems</h4>
+                                    <p class="text-xs text-zinc-400 mt-1">Network protocols, sensor telemetry, and real-time embedded communication.</p>
+                                </div>
+                            </div>
+                            <div class="glass p-4 rounded-2xl flex items-start gap-3.5">
+                                <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400">
+                                    <i class="fa-solid fa-palette"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white text-sm">Creative Entrepreneurship</h4>
+                                    <p class="text-xs text-zinc-400 mt-1">Transforming digital pop-culture & custom art into tactile tufted masterpieces.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills & Tech Stack Section -->
+        <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="reveal text-center max-w-2xl mx-auto mb-14">
+                    <div class="inline-block px-3 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-mono text-xs uppercase tracking-wider mb-3">
+                        02. Tech Stack & Capabilities
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white">Tools I Build With</h2>
+                    <p class="text-zinc-400 mt-3 text-sm sm:text-base">
+                        A multidisciplinary toolkit spanning enterprise web applications, embedded hardware, AI pipelines, and digital design.
+                    </p>
+                </div>
+
+                <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Full-Stack Web -->
+                    <div class="glass rounded-2xl p-6 hover:border-cyan-500/40 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Full-Stack Web</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">Java / Spring Boot</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">React.js</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">TypeScript</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">Tailwind CSS</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">PostgreSQL / MySQL</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">REST & JWT</span>
+                        </div>
+                    </div>
+
+                    <!-- Telecom & Embedded IoT -->
+                    <div class="glass rounded-2xl p-6 hover:border-purple-500/40 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Telecom & IoT</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">ESP32 / Arduino</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">C / C++</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">MQTT / HTTP</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">RF & Wireless</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">Linux / Networking</span>
+                        </div>
+                    </div>
+
+                    <!-- AI & Computer Vision -->
+                    <div class="glass rounded-2xl p-6 hover:border-emerald-500/40 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">AI & Vision</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">Python</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">YOLOv8 / Object Tracking</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">OpenCV</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">Homography Mapping</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">Data Analytics</span>
+                        </div>
+                    </div>
+
+                    <!-- Design & Brand Craft -->
+                    <div class="glass rounded-2xl p-6 hover:border-amber-500/40 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-bezier-curve"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Craft & Brand</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">TUFTINGOO Studio</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">Vector Stencil Design</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">UI/UX Prototyping</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">E-Commerce Ops</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-zinc-800/80 text-zinc-300 text-xs font-mono">Git & Docker</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="reveal flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <div>
+                        <div class="inline-block px-3 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-mono text-xs uppercase tracking-wider mb-3">
+                            03. Selected Works
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white">Featured Projects</h2>
+                    </div>
+
+                    <!-- Interactive Filter Tabs -->
+                    <div class="flex flex-wrap gap-2" id="project-filters">
+                        <button data-filter="all" class="filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-zinc-950 transition-all">
+                            All Projects
+                        </button>
+                        <button data-filter="fullstack" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold glass text-zinc-300 hover:text-white transition-all">
+                            Full-Stack
+                        </button>
+                        <button data-filter="ai" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold glass text-zinc-300 hover:text-white transition-all">
+                            AI & Vision
+                        </button>
+                        <button data-filter="iot" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold glass text-zinc-300 hover:text-white transition-all">
+                            IoT & Telecom
+                        </button>
+                        <button data-filter="craft" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold glass text-zinc-300 hover:text-white transition-all">
+                            TUFTINGOO
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="projects-grid">
+                    
+                    <!-- Project 1: AI Football Analytics -->
+                    <article data-category="ai" class="project-card glass rounded-3xl overflow-hidden border border-zinc-800/90 hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <!-- Visual Banner -->
+                            <div class="h-52 bg-gradient-to-br from-emerald-950 via-zinc-900 to-zinc-950 p-6 relative overflow-hidden flex items-center justify-center">
+                                <!-- Tactical Pitch SVG Graphic -->
+                                <svg class="w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-500" viewBox="0 0 320 160" fill="none">
+                                    <rect x="20" y="15" width="280" height="130" rx="6" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.5"/>
+                                    <line x1="160" y1="15" x2="160" y2="145" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.5"/>
+                                    <circle cx="160" cy="80" r="24" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.5"/>
+                                    <!-- Player tracking bounding boxes & vectors -->
+                                    <rect x="85" y="45" width="16" height="22" stroke="#34d399" stroke-width="1.5"/>
+                                    <path d="M93 56 L130 72" stroke="#34d399" stroke-width="1.5" stroke-dasharray="3 3"/>
+                                    <circle cx="130" cy="72" r="3" fill="#fbbf24"/>
+                                    <rect x="195" y="85" width="16" height="22" stroke="#38bdf8" stroke-width="1.5"/>
+                                    <path d="M203 96 L175 80" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 3"/>
+                                </svg>
+                                <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 font-mono text-xs">
+                                    Computer Vision & AI
+                                </span>
+                            </div>
+
+                            <div class="p-6 sm:p-8">
+                                <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                                    PitchVision AI — Football Tactical Analytics
+                                </h3>
+                                <p class="text-zinc-400 text-sm mt-3 leading-relaxed">
+                                    An end-to-end computer vision pipeline utilizing YOLOv8, ByteTrack, and homography pitch projection to detect players, referees, and ball trajectories—generating real-time heatmaps, sprint speeds, and tactical 2D radar views from match footage.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-2">
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-emerald-300 border border-zinc-800">Python</span>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-emerald-300 border border-zinc-800">YOLOv8</span>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-emerald-300 border border-zinc-800">OpenCV</span>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-emerald-300 border border-zinc-800">Supervision</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-zinc-800/80">
+                                <button onclick="openProjectModal('pitchvision')" class="text-sm font-semibold text-white hover:text-emerald-400 transition-colors flex items-center gap-2">
+                                    <span>View Architecture</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                </button>
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="Source Code" class="text-zinc-400 hover:text-white transition-colors">
+                                    <i class="fa-brands fa-github text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2: Full-Stack Spring Boot & React -->
+                    <article data-category="fullstack" class="project-card glass rounded-3xl overflow-hidden border border-zinc-800/90 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="h-52 bg-gradient-to-br from-cyan-950 via-zinc-900 to-zinc-950 p-6 relative overflow-hidden flex items-center justify-center">
+                                <!-- Full-Stack Architecture SVG -->
+                                <svg class="w-full h-full opacity-85 group-hover:scale-105 transition-transform duration-500" viewBox="0 0 320 160" fill="none">
+                                    <rect x="35" y="45" width="70" height="70" rx="12" stroke="#06b6d4" stroke-width="2" fill="#083344" fill-opacity="0.4"/>
+                                    <text x="70" y="84" fill="#67e8f9" font-family="monospace" font-size="11" text-anchor="middle">React UI</text>
+                                    
+                                    <path d="M105 80 H135" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4 2"/>
+                                    
+                                    <rect x="135" y="45" width="75" height="70" rx="12" stroke="#8b5cf6" stroke-width="2" fill="#2e1065" fill-opacity="0.4"/>
+                                    <text x="172" y="84" fill="#c4b5fd" font-family="monospace" font-size="10" text-anchor="middle">Spring Boot</text>
+
+                                    <path d="M210 80 H235" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4 2"/>
+
+                                    <ellipse cx="265" cy="80" rx="22" ry="30" stroke="#38bdf8" stroke-width="2" fill="#0c4a6e" fill-opacity="0.4"/>
+                                    <text x="265" y="84" fill="#bae6fd" font-family="monospace" font-size="10" text-anchor="middle">SQL</text>
+                                </svg>
+                                <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-mono text-xs">
+                                    Full-Stack Enterprise
+                                </span>
+                            </div>
+
+                            <div class="p-6 sm:p-8">
+                                <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                    NexusCore — Cloud Resource & Workflow Platform
+                                </h3>
+                                <p class="text-zinc-400 text-sm mt-3 leading-relaxed">
+                                    A scalable full-stack web application built with Spring Boot and React. Features role-based JWT authentication, real-time analytics dashboards, automated API documentation, and responsive state management for seamless enterprise operations.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-2">
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-cyan-300 border border-zinc-800">Spring Boot</span>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-cyan-300 border border-zinc-800">React</span>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-cyan-300 border border-zinc-800">PostgreSQL</span>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-cyan-300 border border-zinc-800">Spring Security</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-zinc-800/80">
+                                <button onclick="openProjectModal('nexuscore')" class="text-sm font-semibold text-white hover:text-cyan-400 transition-colors flex items-center gap-2">
+                                    <span>View Architecture</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                </button>
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="Source Code" class="text-zinc-400 hover:text-white transition-colors">
+                                    <i class="fa-brands fa-github text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3: IoT & Embedded Systems -->
+                    <article data-category="iot" class="project-card glass rounded-3xl overflow-hidden border border-zinc-800/90 hover:border-purple-500/50 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="h-52 bg-gradient-to-br from-purple-950 via-zinc-900 to-zinc-950 p-6 relative overflow-hidden flex items-center justify-center">
+                                <!-- IoT Telemetry Wave SVG -->
+                                <svg class="w-full h-full opacity-85 group-hover:scale-105 transition-transform duration-500" viewBox="0 0 320 160" fill="none">
+                                    <circle cx="160" cy="80" r="20" stroke="#a855f7" stroke-width="2" fill="#3b0764"/>
+                                    <circle cx="160" cy="80" r="38" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4 4"/>
+                                    <circle cx="160" cy="80" r="58" stroke="#a855f7" stroke-width="1" stroke-opacity="0.5"/>
+                                    <circle cx="90" cy="50" r="8" fill="#38bdf8"/>
+                                    <circle cx="230" cy="110" r="8" fill="#34d399"/>
+                                    <circle cx="220" cy="45" r="8" fill="#f59e0b"/>
+                                    <line x1="98" y1="53" x2="142" y2="73" stroke="#94a3b8" stroke-width="1.2"/>
+                                    <line x1="222" y1="107" x2="178" y2="87" stroke="#94a3b8" stroke-width="1.2"/>
+                                    <line x1="213" y1="50" x2="176" y2="71" stroke="#94a3b8" stroke-width="1.2"/>
+                                </svg>
+                                <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 font-mono text-xs">
+                                    IoT & Telecom
+                                </span>
+                            </div>
+
+                            <div class="p-6 sm:p-8">
+                                <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">
+                                    SmartGrid Telemetry — Embedded IoT Node Network
+                                </h3>
+                                <p class="text-zinc-400 text-sm mt-3 leading-relaxed">
+                                    Low-power distributed sensor network built on ESP32 microcontrollers communicating via MQTT brokers. Streams environmental, energy, and RF signal quality telemetry to a live cloud monitoring dashboard with automated threshold alerts.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-2">
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-purple-300 border border-zinc-800">ESP32 / C++</span>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-purple-300 border border-zinc-800">MQTT</span>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-purple-300 border border-zinc-800">Node-RED</span>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-purple-300 border border-zinc-800">Wireless Protocols</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-zinc-800/80">
+                                <button onclick="openProjectModal('smartgrid')" class="text-sm font-semibold text-white hover:text-purple-400 transition-colors flex items-center gap-2">
+                                    <span>View Architecture</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                </button>
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="Source Code" class="text-zinc-400 hover:text-white transition-colors">
+                                    <i class="fa-brands fa-github text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 4: TUFTINGOO Brand -->
+                    <article id="venture" data-category="craft" class="project-card glass rounded-3xl overflow-hidden border border-amber-500/30 hover:border-amber-400 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="h-52 bg-gradient-to-br from-amber-950 via-zinc-900 to-zinc-950 p-6 relative overflow-hidden flex items-center justify-center">
+                                <!-- Tufting Rug Art Graphic -->
+                                <svg class="w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-500" viewBox="0 0 320 160" fill="none">
+                                    <rect x="75" y="25" width="170" height="110" rx="28" fill="#f59e0b" fill-opacity="0.15" stroke="#fbbf24" stroke-width="2.5"/>
+                                    <path d="M100 80 C120 45, 150 115, 175 75 C195 45, 215 95, 225 80" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+                                    <circle cx="115" cy="55" r="7" fill="#fb7185"/>
+                                    <circle cx="205" cy="105" r="9" fill="#38bdf8"/>
+                                    <text x="160" y="123" fill="#fde68a" font-family="sans-serif" font-weight="bold" font-size="11" letter-spacing="3" text-anchor="middle">TUFTINGOO</text>
+                                </svg>
+                                <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 font-mono text-xs">
+                                    Founder & Creative Brand
+                                </span>
+                            </div>
+
+                            <div class="p-6 sm:p-8">
+                                <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">
+                                    TUFTINGOO — Custom Hand-Tufted Rug Studio
+                                </h3>
+                                <p class="text-zinc-400 text-sm mt-3 leading-relaxed">
+                                    Founded and scaled a bespoke textile art brand crafting high-density custom rugs. Combining digital vector mapping, color-theory curation, and precision tufting gun craftsmanship to bring anime, streetwear, gaming, and brand logos to life.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-2">
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-amber-300 border border-zinc-800">Brand Strategy</span>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-amber-300 border border-zinc-800">Custom Commissions</span>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 text-amber-300 border border-zinc-800">Vector Design</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-zinc-800/80">
+                                <button onclick="openProjectModal('tuftingoo')" class="text-sm font-semibold text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-2">
+                                    <span>Explore Studio Story</span>
+                                    <i class="fa-solid fa-sparkles text-xs"></i>
+                                </button>
+                                <a href="#contact" class="text-xs font-mono text-zinc-400 hover:text-white transition-colors">
+                                    Commission a Rug →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="reveal text-center max-w-2xl mx-auto mb-12">
+                    <div class="inline-block px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs uppercase tracking-wider mb-3">
+                        04. Certifications
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white">Learning & Credentials</h2>
+                    <p class="text-zinc-400 mt-3 text-sm sm:text-base">
+                        Professional learning in AI and deep learning.
+                    </p>
+                </div>
+
+                <div class="reveal max-w-xl mx-auto">
+                    <article class="glass rounded-2xl p-6 sm:p-8 border border-zinc-800 hover:border-emerald-500/40 transition-all group">
+                        <div class="flex items-start gap-5">
+                            <div class="w-14 h-14 shrink-0 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl group-hover:scale-105 transition-transform">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <div class="min-w-0">
+                                <span class="text-xs font-mono uppercase tracking-wider text-emerald-400">Deep Learning</span>
+                                <h3 class="text-xl font-bold text-white mt-1">NVIDIA</h3>
+                                <p class="text-sm text-zinc-400 mt-2">AI & Deep Learning</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto">
+                <div class="reveal glass rounded-3xl p-8 sm:p-12 border border-zinc-800 relative overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                        <!-- Contact Info -->
+                        <div class="lg:col-span-5 space-y-6">
+                            <div class="inline-block px-3 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-mono text-xs uppercase tracking-wider">
+                                05. Contact
+                            </div>
+                            <h2 class="text-3xl font-bold text-white leading-tight">
+                                Let's build something extraordinary together.
+                            </h2>
+                            <p class="text-zinc-400 text-sm leading-relaxed">
+                                Looking for a software/telecom engineering intern, a full-stack & AI collaborator, or a bespoke tufted rug from <span class="text-amber-400">TUFTINGOO</span>? Drop a message and I'll get back to you promptly.
+                            </p>
+
+                            <div class="space-y-4 pt-2">
+                                <div class="flex items-center gap-3.5 text-sm text-zinc-300">
+                                    <div class="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-cyan-400">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs text-zinc-500">Email</span>
+                                        <button onclick="copyEmail()" class="font-mono hover:text-cyan-400 transition-colors text-left flex items-center gap-2">
+                                            <span id="email-text">baha.douma@engineer.tn</span>
+                                            <i class="fa-regular fa-copy text-xs text-zinc-500"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-3.5 text-sm text-zinc-300">
+                                    <div class="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-purple-400">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs text-zinc-500">Location</span>
+                                        <span>Sousse / Tunis, Tunisia (Remote Worldwide)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <div class="lg:col-span-7">
+                            <form id="contact-form" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="name" class="block text-xs font-mono text-zinc-400 mb-1.5">Your Name</label>
+                                        <input type="text" id="name" required placeholder="Alex Mercer" class="w-full px-4 py-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-xs font-mono text-zinc-400 mb-1.5">Email Address</label>
+                                        <input type="email" id="email" required placeholder="alex@company.com" class="w-full px-4 py-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="topic" class="block text-xs font-mono text-zinc-400 mb-1.5">Inquiry Topic</label>
+                                    <select id="topic" class="w-full px-4 py-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-zinc-200 text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                                        <option value="Software / Full-Stack Engineering">Software / Full-Stack Engineering</option>
+                                        <option value="AI & Computer Vision Project">AI & Computer Vision Project</option>
+                                        <option value="Telecom / IoT Opportunity">Telecom / IoT Opportunity</option>
+                                        <option value="TUFTINGOO Custom Rug Order">TUFTINGOO Custom Rug Commission</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="message" class="block text-xs font-mono text-zinc-400 mb-1.5">Message</label>
+                                    <textarea id="message" rows="4" required placeholder="Tell me about your project, timeline, or idea..." class="w-full px-4 py-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors resize-none"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:opacity-95 text-white font-semibold text-sm transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2">
+                                    <span>Send Message</span>
+                                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-900 py-8 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+            <p>© <span id="current-year"></span> Baha Douma. Engineered with precision & creativity.</p>
+            <div class="flex items-center gap-6">
+                <a href="#about" class="hover:text-zinc-300 transition-colors">About</a>
+                <a href="#projects" class="hover:text-zinc-300 transition-colors">Projects</a>
+                <a href="#certifications" class="hover:text-zinc-300 transition-colors">Certifications</a>
+                <a href="#venture" class="hover:text-amber-400 transition-colors">TUFTINGOO</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Project Details Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="glass max-w-xl w-full rounded-3xl p-6 sm:p-8 border border-zinc-700 shadow-2xl transform transition-all">
+            <div class="flex items-start justify-between gap-4 mb-4">
+                <div>
+                    <span id="modal-tag" class="text-xs font-mono px-2.5 py-1 rounded-md bg-cyan-500/15 text-cyan-400">Category</span>
+                    <h3 id="modal-title" class="text-2xl font-bold text-white mt-2">Project Title</h3>
+                </div>
+                <button onclick="closeProjectModal()" aria-label="Close Modal" class="p-2 rounded-xl bg-zinc-800 text-zinc-400 hover:text-white transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p id="modal-desc" class="text-zinc-300 text-sm leading-relaxed mb-5"></p>
+            <div class="bg-zinc-950/90 rounded-2xl p-4 border border-zinc-800 mb-6">
+                <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Key Highlights & Technical Stack</h4>
+                <ul id="modal-highlights" class="space-y-2 text-sm text-zinc-300 list-disc list-inside"></ul>
+            </div>
+            <div class="flex justify-end">
+                <button onclick="closeProjectModal()" class="px-5 py-2.5 rounded-xl bg-white text-zinc-950 font-semibold text-sm hover:bg-cyan-400 transition-colors">
+                    Close Preview
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Notification Box (Replaces alert) -->
+    <div id="toast-box" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass px-5 py-3.5 rounded-2xl border border-cyan-500/40 shadow-xl flex items-center gap-3 text-sm text-white">
+            <i id="toast-icon" class="fa-solid fa-circle-check text-cyan-400 text-lg"></i>
+            <span id="toast-message">Notification message</span>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Set dynamic year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // Typing Effect in Hero Terminal
+        const phrases = [
+            "initializing_spring_boot_microservices...",
+            "running_yolov8_football_tracking...",
+            "connecting_esp32_mqtt_telemetry...",
+            "crafting_custom_tuftingoo_rugs..."
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing-text');
+
+        function typeLoop() {
+            const currentPhrase = phrases[phraseIndex];
+            if (isDeleting) {
+                typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 35 : 65;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                speed = 1800;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                speed = 400;
+            }
+
+            setTimeout(typeLoop, speed);
+        }
+        window.addEventListener('DOMContentLoaded', typeLoop);
+
+        // Scroll Reveal Observer
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Interactive Project Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Reset active styles
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-cyan-500', 'text-zinc-950', 'active');
+                    b.classList.add('glass', 'text-zinc-300');
+                });
+                // Set active style
+                btn.classList.remove('glass', 'text-zinc-300');
+                btn.classList.add('bg-cyan-500', 'text-zinc-950', 'active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 20);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.96)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 250);
+                    }
+                });
+            });
+        });
+
+        // Project Details Modal Logic
+        const projectDetails = {
+            pitchvision: {
+                tag: "AI & Computer Vision",
+                title: "PitchVision AI — Football Tactical Analytics",
+                desc: "Designed to automate sports video analysis, PitchVision AI processes broadcast match video using fine-tuned YOLOv8 detection models and ByteTrack multi-object tracking. Perspective transformation maps pixel coordinates onto a standardized 2D pitch model.",
+                highlights: [
+                    "Real-time detection of players, goalkeepers, referees, and match ball.",
+                    "K-Means jersey color clustering for automatic team assignment.",
+                    "Homography matrix calibration for 2D tactical radar and distance covered metrics."
+                ]
+            },
+            nexuscore: {
+                tag: "Full-Stack Web Engineering",
+                title: "NexusCore — Enterprise Management Suite",
+                desc: "A decoupled web architecture built with a Java Spring Boot REST API backend and a modular React frontend. Engineered for high maintainability, strict data validation, and snappy user interactions.",
+                highlights: [
+                    "Stateless authentication & role-based access control using Spring Security & JWT.",
+                    "Relational data modeling in PostgreSQL with Spring Data JPA.",
+                    "Responsive UI components with live filtering, pagination, and interactive metrics."
+                ]
+            },
+            smartgrid: {
+                tag: "Telecommunications & IoT",
+                title: "SmartGrid Telemetry — Embedded IoT Network",
+                desc: "An end-to-end IoT monitoring architecture leveraging ESP32 microcontrollers to acquire multi-sensor readings and transmit lightweight payloads over MQTT to a centralized visualization server.",
+                highlights: [
+                    "Low-power firmware written in C++ with automatic Wi-Fi & MQTT reconnection.",
+                    "Real-time telemetry visualization and anomaly alerting.",
+                    "Optimized packet framing for constrained wireless bandwidth environments."
+                ]
+            },
+            tuftingoo: {
+                tag: "Entrepreneurship & Textile Art",
+                title: "TUFTINGOO — Custom Hand-Tufted Rugs",
+                desc: "An independent creative brand blending digital illustration precision with tactile craftsmanship. Every piece is custom-designed, tufted with premium acrylic/wool yarn, carved for 3D relief, and backed for durability.",
+                highlights: [
+                    "End-to-end brand creation, social media storytelling, and client commission workflow.",
+                    "Digital stencil projection and multi-level pile sculpting techniques.",
+                    "Custom pieces created for gaming setups, creative studios, and interior spaces."
+                ]
+            }
+        };
+
+        const modal = document.getElementById('project-modal');
+        function openProjectModal(key) {
+            const data = projectDetails[key];
+            if (!data) return;
+
+            document.getElementById('modal-tag').textContent = data.tag;
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-desc').textContent = data.desc;
+
+            const list = document.getElementById('modal-highlights');
+            list.innerHTML = '';
+            data.highlights.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                list.appendChild(li);
+            });
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeProjectModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeProjectModal();
+        });
+
+        // Toast Notification Helper
+        function showToast(message) {
+            const toast = document.getElementById('toast-box');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        // Copy Email using execCommand fallback
+        function copyEmail() {
+            const email = document.getElementById('email-text').textContent;
+            const tempInput = document.createElement('input');
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Email copied to clipboard: ' + email);
+        }
+
+        // Contact Form Submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const topic = document.getElementById('topic').value;
+            showToast(`Thanks ${name}! Your message regarding "${topic}" has been sent.`);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
